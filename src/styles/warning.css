@@ -1,0 +1,210 @@
+.custom-dialog-warning-large{
+    position: fixed;
+    background-color: #1F1F1F;
+    top: 25%;
+    left: 30%;
+    width: 40%;
+    height: 50%;
+    z-index: 9;
+    color: white;
+}
+.custom-dialog-warning-medium{
+    position: fixed;
+    background-color: #1F1F1F;
+    top: 30%;
+    left: 36.25%;
+    width: 27.5%;
+    height: 40%;
+    z-index: 9;
+    color: white;
+}
+.custom-dialog-warning-small{
+    position: fixed;
+    background-color: #1F1F1F;
+    top: 31.25%;
+    left: 36.25%;
+    width: 27.5%;
+    height: 37.5%;
+    z-index: 9;
+    color: white;
+}
+.custom-dialog-credits{
+    position: fixed;
+    background-color: #1F1F1F;
+    top: 31.25%;
+    left: 36.25%;
+    width: 27.5%;
+    height: 42.5%;
+    z-index: 9;
+    color: white;
+}
+.custom-dialog-feed{
+    position: fixed;
+    background-color: #1F1F1F;
+    top: 17.5%;
+    left: 35%;
+    width: 30%;
+    height: 65%;
+    z-index: 9;
+    color: white;
+}
+.custom-dialog-rating{
+    position: fixed;
+    background-color: #1F1F1F;
+    top: 31.25%;
+    left: 38.75%;
+    width: 22.5%;
+    height: 37.5%;
+    z-index: 9;
+    color: white;
+}
+.custom-dialog-contacts{
+    position: fixed;
+    background-color: #1F1F1F;
+    top: 27.5%;
+    left: 36.25%;
+    width: 27.5%;
+    height: 45%;
+    z-index: 9;
+    color: white;
+}
+.custom-dialog-send-money{
+    position: fixed;
+    background-color: #1F1F1F;
+    top: 25%;
+    left: 36.25%;
+    width: 27.5%;
+    height: 50%;
+    z-index: 9;
+    color: white;
+}
+.custom-dialog-header-warning{
+    height: 25%;
+}
+.custom-dialog-body-warning{
+    height: 75%;
+}
+.custom-dialog-row-top-warning{
+    height: 75%;
+}
+.custom-dialog-row-bottom-warning{
+    height: 25%;
+}
+.custom-div-separator-warning{
+    width: 2.5%;
+}
+.custom-text-warning{
+    font-size: 1rem;
+    color: white;
+}
+@media screen and (orientation:portrait) {
+    .custom-dialog-warning-large{
+        top: 33%;
+        left: 10%;
+        width: 80%;
+        height: 33%;
+    }
+    .custom-font-size-warning{
+        font-size: 1rem;
+    }
+    .custom-btn-warning{
+        font-size: 1rem;
+    }
+}
+@media (min-width: 0px) and (max-width: 239.98px) {
+    @media screen and (orientation:landscape) {
+        .custom-dialog-warning-large{
+            height: 70%;
+            top: 15%;
+        }
+        .custom-font-size-warning{
+            font-size: 0.3rem;
+        }
+        .custom-btn-warning{
+            font-size: 0.3rem;
+        }
+    }
+}
+@media (min-width: 240px) and (max-width: 359.98px) {
+    @media screen and (orientation:landscape) {
+        .custom-dialog-warning-large{
+            width: 45%;
+            height: 70%;
+            top: 15%;
+            left: 27.5%;
+        }
+        .custom-font-size-warning{
+            font-size: 0.3rem;
+        }
+        .custom-btn-warning{
+            font-size: 0.3rem;
+        }
+    }
+}
+@media (min-width: 360px) and (max-width: 479.98px) {
+    @media screen and (orientation:landscape) {
+        .custom-dialog-warning-large{
+            height: 65%;
+            top: 17.5%;
+        }
+        .custom-font-size-warning{
+            font-size: 0.4rem;
+        }
+        .custom-btn-warning{
+            font-size: 0.4rem;
+        }
+    }
+}
+@media (min-width: 480px) and (max-width: 575.98px) {
+    @media screen and (orientation:landscape) {
+        .custom-dialog-warning-large{
+            width: 45%;
+            height: 70%;
+            top: 15%;
+            left: 27.5%;
+        }
+        .custom-font-size-warning{
+            font-size: 0.6rem;
+        }
+        .custom-btn-warning{
+            font-size: 0.6rem;
+        }
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    @media screen and (orientation:landscape) {
+        .custom-dialog-warning-large{
+            height: 65%;
+            top: 17.5%;
+        }
+        .custom-font-size-warning{
+            font-size: 0.7rem;
+        }
+        .custom-btn-warning{
+            font-size: 0.7rem;
+        }
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    @media screen and (orientation:landscape) {
+        .custom-dialog-warning-large{
+            height: 65%;
+            top: 17.5%;
+        }
+        .custom-text-warning{
+            font-size: 0.8rem;
+        }
+        .custom-btn-warning{
+            font-size: 0.8rem;
+        }
+    }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    @media screen and (orientation:landscape) {
+        .custom-dialog-warning-large{
+            height: 65%;
+            top: 17.5%;
+        }
+    }
+}
+

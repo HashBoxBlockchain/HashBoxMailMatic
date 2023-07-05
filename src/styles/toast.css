@@ -1,0 +1,27 @@
+.custom-toast-background{
+    left: 25%;
+    width: 50%;
+    height: 25%;
+    z-index: 8;
+    pointer-events: none;
+}
+.custom-toast{
+    background-color: #666666;
+    pointer-events: none;
+}
+.custom-toast-body{
+    color: white;
+    position: center;
+}
+@media (min-width: 0px) and (max-width: 239.98px) {
+    .custom-toast-background{
+        top: 66%;
+        height: 12.5%;
+    }
+}
+@media (min-width: 240px) and (max-width: 359.98px) {
+    .custom-toast-background{
+        top: 66%;
+        height: 12.5%;
+    }
+}

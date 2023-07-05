@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HashBox Mail</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="../imports/bootstrap/bootstrap-5.2.min.css" rel="stylesheet">
+    <link href="../imports/quill/quill.snow-1.3.6.css"  rel="stylesheet">
+    <link href="../styles/loading.css" rel="stylesheet">
+    <link href="../styles/menu.css" rel="stylesheet">
+    <link href="../styles/container.css" rel="stylesheet">
+    <link href="../styles/warning.css" rel="stylesheet">
+    <link href="../styles/dialog.css" rel="stylesheet">
+    <link href="../styles/toast.css" rel="stylesheet">
+    <link href="../styles/index.css" rel="stylesheet">
+</head>
+<body style="background:white">
+<script src="../imports/jquery-3.6.0.min.js"></script>
+<script type="module" src="../imports/web3-1.7.4.min.js"></script>
+<script src="../imports/detect-provider-2.0.0.min.js"></script>
+<script src="../imports/crypto-js-4.1.1.min.js"></script>
+<script src="../imports/quill/quill-1.3.6.min.js"></script>
+<script src="../imports/bootstrap/bootstrap-5.2.bundle.min.js"></script>
+<script type="module" src="../modules/index.mjs"></script>
+<div class="d-flex justify-content-center align-items-start">
+    <div class="col custom-main-col">
+        <div class="row custom-top-row g-0 p-0">
+            <div class="col g-0 p-0 h-100" style="position: absolute; left: 1%; width: 50%;">
+                <div class="row g-0 p-0 d-flex justify-content-center align-items-center h-100" style="position: relative; width: 40%;">
+                    <a class="col g-0 p-0 d-flex justify-content-center align-items-center" href="/" style="position: absolute; top: 0; height: 65%;">
+                        <img class="img-fluid" src="../images/icon.svg" style="max-width: 75%; max-height: 100%;"/>
+                    </a>
+                    <div class="col g-0 p-0 d-flex justify-content-center align-items-center" style="position: absolute; bottom: 0; height: 35%;">
+                        <label class="account-label d-none">Address:&nbsp;</label><label class="account d-flex justify-content-center align-items-center fw-bold"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col g-0 p-0 h-100" style="position: absolute; right: 1%; width: 65%;">
+                <div class="row g-0 p-0 d-flex justify-content-center align-items-center h-100" style="position: absolute; left: 2%; top: 0; width: 22.5%;">
+                    <button class="row buy-credits btn btn-secondary" type="button" style="position: absolute; top: 5%; width: 90%; height: 40%;">
+                        <div class="row g-0 p-0 m-0 w-100 h-100">
+                            <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                <img class="img-fluid img-for-button" src="../images/monetization_on_white_48dp.svg"/>
+                            </div>
+                            <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                Buy Credits
+                            </div>
+                        </div>
+                    </button>
+                    <button class="row sell-credits btn btn-secondary" type="button" style="position: absolute; bottom: 5%; width: 90%; height: 40%;">
+                        <div class="row g-0 p-0 m-0 w-100 h-100">
+                            <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                <img class="img-fluid img-for-button" src="../images/storefront_white_48dp.svg"/>
+                            </div>
+                            <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                Sell Credits
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="row g-0 p-0 d-flex justify-content-center align-items-center h-100" style="position: absolute; left: 26.5%; top: 0; width: 22.5%;">
+                    <button class="row add-credits btn btn-secondary" type="button" style="position: absolute; top: 5%; width: 90%; height: 40%;">
+                        <div class="row g-0 p-0 m-0 w-100 h-100">
+                            <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                <img class="img-fluid img-for-button" src="../images/add_white_48dp.svg"/>
+                            </div>
+                            <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                Add Credits
+                            </div>
+                        </div>
+                    </button>
+                    <button class="row feed btn btn-secondary" type="button" style="position: absolute; bottom: 5%; width: 90%; height: 40%;">
+                        <div class="row g-0 p-0 m-0 w-100 h-100">
+                            <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                <img class="img-fluid img-for-button" src="../images/rss_feed_white_48dp.svg"/>
+                            </div>
+                            <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                Create Feed
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="row g-0 p-0 d-flex justify-content-center align-items-center h-100" style="position: absolute; left: 51%; top: 0; width: 22.5%;">
+                    <button class="row refresh-credits btn btn-secondary" type="button" style="position: absolute; top: 5%; width: 90%; height: 40%;">
+                        <div class="row g-0 p-0 m-0 w-100 h-100">
+                            <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                <img class="img-fluid img-for-button" src="../images/refresh_white_48dp.svg"/>
+                            </div>
+                            <div class="col g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                <label class="d-flex justify-content-start align-items-center">Credits:&nbsp;</label>
+                                <label class="credits d-flex justify-content-start align-items-center fw-bold"></label>
+                            </div>
+                        </div>
+                    </button>
+                    <button class="row send-money btn btn-secondary" type="button" style="position: absolute; bottom: 5%; width: 90%; height: 40%;">
+                        <div class="row g-0 p-0 m-0 w-100 h-100">
+                            <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                <img class="img-fluid img-for-button" src="../images/send_white_48dp.svg"/>
+                            </div>
+                            <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                Send Token
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="row g-0 p-0 d-flex justify-content-center align-items-center h-100" style="position: absolute; left: 75.5%; top: 0; width: 22.5%;">
+                    <button class="row sign-in btn btn-primary" type="button" style="position: absolute; top: 5%; width: 90%; height: 40%;">
+                        <div class="row g-0 p-0 m-0 w-100 h-100">
+                            <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                <img class="img-fluid img-for-button" src="../images/login_white_48dp.svg"/>
+                            </div>
+                            <div class="sign-in-text g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                Sign In
+                            </div>
+                        </div>
+                    </button>
+                    <button class="row settings btn btn-secondary" type="button" style="position: absolute; bottom: 5%; width: 90%; height: 40%;">
+                        <div class="row g-0 p-0 m-0 w-100 h-100">
+                            <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                <img class="img-fluid img-for-button" src="../images/settings_white_48dp.svg"/>
+                            </div>
+                            <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                Settings
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row custom-center-row g-0 p-0 d-flex justify-content-center align-items-center">
+            <div class="row list-container d-flex justify-content-start align-items-start m-0 p-0 g-0">
+                <div class="d-flex justify-content-start align-items-center" style="margin-left: 22.5%; width: 76%; height: 10%;">
+                    <input class="search-mail-input d-none ms-1" type="text" placeholder="Address or Nickname" style="width: 37.5%">
+                    <button class="search-mail-btn d-none btn btn-secondary ms-1" type="button" style="width: auto">Search</button>
+                    <label class="ms-4">Total&nbsp;</label><label class="total fw-bold">0</label><label class="total-type">&nbsp;Mails</label>
+                    <button class="refresh btn btn-secondary ms-4" type="button" style="height: 75%">
+                        <div class="g-0 p-0 d-flex justify-content-center align-items-center h-100">
+                            <img class="img-fluid img-for-button" src="../images/refresh_white_48dp.svg"/>
+                        </div>
+                    </button>
+                    <button class="add-contact btn btn-secondary ms-4 d-none" type="button" style="width: auto">Add Contact</button>
+                    <button class="block-all btn btn-secondary ms-4" type="button" style="width: auto">Block Users</button>
+                    <button class="delete-all btn btn-secondary ms-4" type="button" style="width: auto">Delete Selected</button>
+                    <button class="read-all btn btn-secondary ms-4" type="button" style="width: auto">Mark as Read</button>
+                    <div class="only-my-feeds form-check form-switch ms-4 d-none">
+                        <input class="form-check-input" type="checkbox" role="switch" id="only-my-feeds">
+                        <label class="form-check-label" for="only-my-feeds">Only Feeds Created by Me</label>
+                    </div>
+                    <button class="page-back btn btn-secondary ms-4" type="button" style="width: 4%; height: 75%">
+                        <div class="g-0 p-0 d-flex justify-content-center align-items-center h-100">
+                            <img class="img-fluid img-for-button" src="../images/arrow_back_ios_white_48dp.svg"/>
+                        </div>
+                    </button>
+                    <button class="page-forward btn btn-secondary ms-4" type="button" style="width: 4%; height: 75%">
+                        <div class="g-0 p-0 d-flex justify-content-center align-items-center h-100">
+                            <img class="img-fluid img-for-button" src="../images/arrow_forward_ios_white_48dp.svg"/>
+                        </div>
+                    </button>
+                </div>
+                <div class="d-flex justify-content-center align-items-center" style="margin-left: 22.5%; width: 76%; height: 5%;">
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <div class="col-select d-flex justify-content-center align-items-center m-0 p-0 g-0" style='width: 10%; height: 100%;'>
+                            <label class="m-0 p-0 g-0">Select:</label>
+                        </div>
+                        <label class="col-from-to d-flex justify-content-center align-items-center" style='width: 20%;'>From:</label>
+                        <label class="col-subject d-flex justify-content-start align-items-center" style='width: 40%;'>Subject:</label>
+                        <label class="col-date d-flex justify-content-center align-items-center" style='width: 15%;'>Date:</label>
+                        <label class="col-value d-flex justify-content-center align-items-center" style='width: 15%;'>Value:</label>
+                    </div>
+                </div>
+                <div class="card inbox-list-container">
+                    <ul class="inbox-list list-group list-group-vertical flex-wrap" style="overflow: hidden;"></ul>
+                </div>
+                <div class="card sent-list-container d-none">
+                    <ul class="sent-list list-group list-group-vertical flex-wrap" style="overflow: hidden;"></ul>
+                </div>
+                <div class="card all-mail-list-container d-none">
+                    <ul class="all-mail-list list-group list-group-vertical flex-wrap" style="overflow: hidden;"></ul>
+                </div>
+                <div class="card burned-list-container d-none">
+                    <ul class="burned-list list-group list-group-vertical flex-wrap" style="overflow: hidden;"></ul>
+                </div>
+                <div class="card blocked-users-list-container d-none">
+                    <ul class="blocked-users-list list-group list-group-vertical flex-wrap" style="overflow: hidden;"></ul>
+                </div>
+                <div class="card feeds-list-container d-none">
+                    <ul class="feeds-list list-group list-group-vertical flex-wrap" style="overflow: hidden;"></ul>
+                </div>
+                <div class="card subscriptions-list-container d-none">
+                    <ul class="subscriptions-list list-group list-group-vertical flex-wrap" style="overflow: hidden;"></ul>
+                </div>
+                <div class="card contacts-list-container d-none">
+                    <ul class="contacts-list list-group list-group-vertical flex-wrap" style="overflow: hidden;"></ul>
+                </div>
+                <div class="card search-mail-list-container d-none">
+                    <ul class="search-mail-list list-group list-group-vertical flex-wrap" style="overflow: hidden;"></ul>
+                </div>
+                <div class="col options-div" style="position: absolute; left: 1%; top: 1%; width: 20%; height: 97.5%;">
+                    <div class="d-flex justify-content-center align-items-center" style="position: relative; left: 5%; top: 2.5%; width: 90%; height: 10%;">
+                        <button class="card compose d-flex justify-content-center align-items-center btn w-75 h-75" type="button" style="color: black; background: #bcb2ff">Compose</button>
+                    </div>
+                    <div style="position: relative; left: 5%; top: 5%; width: 90%; height: 82.5%;">
+                        <ul class="card options-list list-group list-group-horizontal d-flex flex-wrap">
+                            <li class="list-group-item border-0 flex-wrap d-flex justify-content-start align-items-center p-0 g-0">
+                                <label class="inbox options-item d-flex justify-content-start align-items-center ps-4 fw-bold" style="background-color: #bcb2ff; border-top: 0;">Inbox</label>
+                            </li>
+                            <li class="list-group-item border-0 flex-wrap d-flex justify-content-start align-items-center p-0 g-0">
+                                <label class="sent options-item d-flex justify-content-start align-items-center ps-4">Sent</label>
+                            </li>
+                            <li class="list-group-item border-0 flex-wrap d-flex justify-content-start align-items-center p-0 g-0">
+                                <label class="trash options-item d-flex justify-content-start align-items-center ps-4">Trash</label>
+                            </li>
+                            <li class="list-group-item border-0 flex-wrap d-flex justify-content-start align-items-center p-0 g-0">
+                                <label class="all-mail options-item d-flex justify-content-start align-items-center ps-4">All Mail</label>
+                            </li>
+                            <li class="list-group-item border-0 flex-wrap d-flex justify-content-start align-items-center p-0 g-0">
+                                <label class="search-mail options-item d-flex justify-content-start align-items-center ps-4">Search Mail</label>
+                            </li>
+                            <li class="list-group-item border-0 flex-wrap d-flex justify-content-start align-items-center p-0 g-0">
+                                <label class="contacts options-item d-flex justify-content-start align-items-center ps-4">Contacts</label>
+                            </li>
+                            <li class="list-group-item border-0 flex-wrap d-flex justify-content-start align-items-center p-0 g-0">
+                                <label class="blocked-users options-item d-flex justify-content-start align-items-center ps-4">Blocked Users</label>
+                            </li>
+                            <li class="list-group-item border-0 flex-wrap d-flex justify-content-start align-items-center p-0 g-0">
+                                <label class="feeds options-item d-flex justify-content-start align-items-center ps-4">Feeds</label>
+                            </li>
+                            <li class="list-group-item border-0 flex-wrap d-flex justify-content-start align-items-center p-0 g-0">
+                                <label class="subscriptions options-item d-flex justify-content-start align-items-center ps-4" style="border-bottom: 0;">Subscriptions</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0 invisible read-msg-container d-flex justify-content-center align-items-center">
+                <div class="row g-0 d-flex justify-content-center align-items-start" style="width: 96%; height: 100%;">
+                    <div class="col g-0 d-flex justify-content-start align-items-center w-100" style="position: absolute; top: 0; height: 10%;">
+                        <button class="back btn btn-secondary ms-4" type="button" style="width: auto">Back</button>
+                        <button class="block btn btn-secondary ms-4" type="button" style="width: auto">Block User</button>
+                        <button class="delete btn btn-secondary ms-4" type="button" style="width: auto">Delete Mail</button>
+                    </div>
+                    <div class="row g-0 d-flex justify-content-center align-items-center w-100 ms-4 me-4" style="position: absolute; top: 10%; height: 25%;">
+                        <div class="d-flex justify-content-start align-items-center ps-4" style="width: 96%; height: 20%">
+                            <label class="fw-bold">From:&nbsp;</label>
+                            <label id="msg-from"></label>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center ps-4" style="width: 96%; height: 20%">
+                            <label class="fw-bold">To:&nbsp;</label>
+                            <label id="msg-to"></label>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center ps-4" style="width: 96%; height: 20%">
+                            <label class="fw-bold">Date:&nbsp;</label>
+                            <label id="msg-date"></label>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center ps-4" style="width: 96%; height: 20%">
+                            <label class="fw-bold">Value:&nbsp;</label>
+                            <label id="msg-value"></label>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center ps-4" style="width: 96%; height: 20%">
+                            <label class="fw-bold">Subject:&nbsp;</label>
+                            <label id="subject"></label>
+                        </div>
+                    </div>
+                    <div class="row g-0" style="position: absolute; top: 37.5%; width: 96%; height: 45%;">
+                        <div id="message" class="h-100"></div>
+                    </div>
+                    <div class="col g-0 d-flex justify-content-start align-items-center w-100" style="position: absolute; top: 90%; height: 10%;">
+                        <div class="d-flex justify-content-start align-items-center w-25 h-100" style="position: relative;">
+                            <button class="download-file btn btn-secondary ms-4" type="button" style="width: auto">Download</button>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center w-25 h-100" style="position: relative;">
+                        </div>
+                        <div class="d-flex justify-content-end align-items-center w-50 h-100" style="position: relative;">
+                            <button class="reply btn btn-primary me-4" type="button" style="width: auto">Reply</button>
+                            <button class="forward btn btn-primary me-4" type="button" style="width: auto">Forward</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0 invisible write-msg-container d-flex justify-content-center align-items-center">
+                <div class="row g-0 d-flex justify-content-center align-items-start" style="width: 96%; height: 100%;">
+                    <div class="col g-0 d-flex justify-content-start align-items-center w-100" style="position: absolute; top: 0; height: 10%;">
+                        <button class="back btn btn-secondary ms-4" type="button" style="width: auto">Back</button>
+                    </div>
+                    <div class="row g-0 d-flex justify-content-center align-items-center w-100 ms-4 me-4" style="position: absolute; top: 10%; height: 25%;">
+                        <div class="d-flex justify-content-start align-items-center ps-4" style="width: 96%; height: 25%">
+                            <label class="fw-bold">To:&nbsp;</label>
+                            <input class="to h-100 ms-2" style="width: 35%;">
+                            <button class="ok btn btn-secondary ms-3" type="button" style="width: auto">OK</button>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center ps-4" style="width: 96%; height: 25%">
+                            <label class="fw-bold">Fee:&nbsp;</label>
+                            <input class="fee h-100 ms-2" type="number" style="width: 15%;">
+                            <label class="fee-symbol fw-bold ms-1"></label>
+                            <label class="fee-or ms-1 d-none"></label>
+                            <label class="fee-secondary-value d-none"></label>
+                            <label class="fee-secondary-symbol fw-bold d-none"></label>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center ps-4" style="width: 96%; height: 25%">
+                            <label class="fw-bold">Subject:&nbsp;</label>
+                            <input class="subject h-100 ms-2" type="text" maxlength="135" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="row g-0" style="position: absolute; top: 37.5%; width: 96%; height: 45%;">
+                        <div id="editor" class="h-100"></div>
+                    </div>
+                    <div class="col g-0 d-flex justify-content-start align-items-center w-100" style="position: absolute; top: 90%; height: 10%;">
+                        <div class="d-flex justify-content-start align-items-center w-25 h-100" style="position: relative;">
+                            <label for="attach-file" class="btn-attach-file btn btn-secondary ms-4">Attach File</label>
+                            <label class="filename d-flex justify-content-start align-items-center ms-2"></label>
+                            <input id="attach-file" type="file" name="file[]" accept="*" style="visibility: hidden; width: 0"/>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center w-25 h-100" style="position: relative;">
+                        </div>
+                        <div class="d-flex justify-content-end align-items-center w-50 h-100" style="position: relative;">
+                            <button class="send btn btn-primary me-4" type="button" style="width: auto">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0 invisible settings-container d-flex justify-content-center align-items-center">
+                <div class="row g-0 d-flex justify-content-start align-items-start" style="width: 96%; height: 100%;">
+                    <div class="col g-0 d-flex justify-content-start align-items-center w-100 ms-4 me-4" style="height: 10%;">
+                        <button class="back btn btn-secondary" type="button" style="width: auto">Back</button>
+                    </div>
+                    <div class="row g-0 d-flex justify-content-start align-items-start w-100 rounded-3" style="position: relative; height: 87.5%; background-color: #e7e7ff; overflow-y: scroll;">
+                        <label class="row fw-bold ms-4 mt-4" style="position: absolute; top: 0; width: auto; height: auto;">Account:</label>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 10%; width: 90%; height: 7.5%;">
+                            <label>Fee:</label>
+                            <input class="fee h-100 ms-3" type="number" placeholder="Value in ETH" style="width: 20%;">
+                            <label class="fee-token ms-2 fw-semibold"></label>
+                            <div class="form-check form-switch ms-4">
+                                <input class="form-check-input" type="checkbox" role="switch" id="always-paid">
+                                <label class="form-check-label always-paid-label" for="always-paid">Sender Always Pays This Fee</label>
+                            </div>
+                            <button class="save btn btn-secondary ms-2" type="button">Save</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 22.5%; width: 90%; height: 7.5%;">
+                            <label>Free Mails:</label>
+                            <input class="free-address h-100 ms-3" type="text" placeholder="From Address/Nickname" style="width: 35%;">
+                            <div class="form-check form-switch ms-2">
+                                <input class="form-check-input" type="checkbox" role="switch" id="free-mails">
+                                <label class="form-check-label always-paid-label" for="free-mails">Remove Address From The Whitelist</label>
+                            </div>
+                            <button class="save btn btn-secondary ms-2" type="button">Save</button>
+                        </div>
+                        <div class="row ms-4 mt-4" style="position: absolute; top: 35%; width: 97.5%; height: 7.5%;">
+                            <button class="row backup btn btn-secondary" type="button" style="position: relative; width: 17.5%; height: 100%;">
+                                <div class="row g-0 p-0 m-0 w-100 h-100">
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                        <img class="img-fluid img-for-button" src="../images/cloud_download_white_48dp.svg"/>
+                                    </div>
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                        Backup Account
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="row backup-mailbox btn btn-secondary ms-5" type="button" style="position: relative; width: 17.5%; height: 100%;">
+                                <div class="row g-0 p-0 m-0 w-100 h-100">
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                        <img class="img-fluid img-for-button" src="../images/archive_white_48dp.svg"/>
+                                    </div>
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                        Backup Mailbox
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="row delete-account btn btn-secondary ms-5" type="button" style="position: relative; width: 17.5%; height: 100%;">
+                                <div class="row g-0 p-0 m-0 w-100 h-100">
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                        <img class="img-fluid img-for-button" src="../images/delete_forever_white_48dp.svg"/>
+                                    </div>
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                        Delete Account
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="row import-pk btn btn-secondary ms-5" type="button" style="position: relative; width: 17.5%; height: 100%;">
+                                <div class="row g-0 p-0 m-0 w-100 h-100">
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                        <img class="img-fluid img-for-button" src="../images/vpn_key_white_48dp.svg"/>
+                                    </div>
+                                    <label class="col g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100" for="attach-pk">
+                                        Import Private Key
+                                    </label>
+                                    <input id="attach-pk" type="file" name="file[]" accept=".dat" style="visibility: hidden; width: 0"/>
+                                </div>
+                            </button>
+                            <label class="row filename-pk d-flex justify-content-start align-items-center ms-3" style="position: relative; width: 20%; height: 100%;"></label>
+                        </div>
+                        <div style="position: absolute; top: 55%; width: 100%; height: 1px; background-color: grey;"></div>
+                        <label class="row fw-bold ms-4" style="position: absolute; top: 62.5%; width: auto; height: auto;">Mails:</label>
+                        <div class="form-check form-switch d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 67.5%; width: 97.5%; height: 7.5%;">
+                            <input class="form-check-input" type="checkbox" role="switch" id="use-nickname">
+                            <label class="form-check-label use-nickname-label ms-2" for="use-nickname">Show Nicknames Instead of Addresses (Slow Loading)</label>
+                        </div>
+                        <div style="position: absolute; top: 87.5%; width: 100%; height: 1px; background-color: grey;"></div>
+                        <label class="row fw-bold ms-4" style="position: absolute; top: 95%; width: auto; height: auto;">Credits:</label>
+                        <button class="row remove-approvals btn btn-secondary ms-4 mt-4" type="button" style="position: absolute; top: 100%; width: 17.5%; height: 7.5%;">
+                            <div class="row g-0 p-0 m-0 w-100 h-100">
+                                <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                    <img class="img-fluid img-for-button" src="../images/delete_outline_white_48dp.svg"/>
+                                </div>
+                                <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                    Remove Approvals
+                                </div>
+                            </div>
+                        </button>
+                        <div style="position: absolute; top: 120%; width: 100%; height: 1px; background-color: grey;"></div>
+                        <label class="row fw-bold ms-4" style="position: absolute; top: 127.5%; width: auto; height: auto;">DeFi:</label>
+                        <div class="row d-flex justify-content-start align-items-center g-0 p-0 m-0 ms-4" style="position: absolute; top: 135%; width: 95%;">
+                            <div><label class="label-credits-price">Credits Price:&nbsp;</label><label class="credits-price"></label></div>
+                            <div><label class="label-min-amount">Minimum Amount to Buy:&nbsp;</label><label class="min-amount"></label></div>
+                            <div><label class="label-total-token-stored">Total Credits Stored in Contract:&nbsp;</label><label class="total-token-stored"></label></div>
+                            <div><label class="label-total-eth-stored">Total ETH Stored in Contract:&nbsp;</label><label class="total-eth-stored"></label></div>
+                            <div><label class="label-total-approved">Total Approved to Sell/Deposit:&nbsp;</label><label class="total-approved"></label></div>
+                            <div><label class="label-total-token-withdraw">Total Credits to Withdraw:&nbsp;</label><label class="total-token-withdraw"></label></div>
+                            <div><label class="label-total-eth-withdraw">Total ETH to Withdraw:&nbsp;</label><label class="total-eth-withdraw"></label></div>
+                        </div>
+                        <div class="row ms-4 mt-4" style="position: absolute; top: 167.5%; width: 97.5%; height: 7.5%;">
+                            <button class="row approve-credits btn btn-secondary" type="button" style="position: relative; width: 17.5%; height: 100%;">
+                                <div class="row g-0 p-0 m-0 w-100 h-100">
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                        <img class="img-fluid img-for-button" src="../images/done_white_48dp.svg"/>
+                                    </div>
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                        Approve Credits
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="row deposit-credits btn btn-secondary ms-5" type="button" style="position: relative; width: 17.5%; height: 100%;">
+                                <div class="row g-0 p-0 m-0 w-100 h-100">
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                        <img class="img-fluid img-for-button" src="../images/account_balance_white_48dp.svg"/>
+                                    </div>
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                        Deposit Credits
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="row withdraw-credits btn btn-secondary ms-5" type="button" style="position: relative; width: 17.5%; height: 100%;">
+                                <div class="row g-0 p-0 m-0 w-100 h-100">
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                        <img class="img-fluid img-for-button" src="../images/monetization_on_white_48dp.svg"/>
+                                    </div>
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                        Withdraw Credits
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="row withdraw-ether btn btn-secondary ms-5" type="button" style="position: relative; width: 17.5%; height: 100%;">
+                                <div class="row g-0 p-0 m-0 w-100 h-100">
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                        <img class="img-fluid img-for-button" src="../images/account_balance_wallet_white_48dp.svg"/>
+                                    </div>
+                                    <div class="withdraw-token-type g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                        Withdraw ETH
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="row remove-approvals btn btn-secondary ms-5" type="button" style="position: relative; width: 17.5%; height: 100%;">
+                                <div class="row g-0 p-0 m-0 w-100 h-100">
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-center align-items-center w-25 h-100">
+                                        <img class="img-fluid img-for-button" src="../images/delete_outline_white_48dp.svg"/>
+                                    </div>
+                                    <div class="g-0 p-0 m-0 d-flex justify-content-start align-items-center w-75 h-100">
+                                        Remove Approvals
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <div style="position: absolute; top: 187.5%; width: 100%; height: 1px; background-color: grey;"></div>
+                        <label class="row fw-bold ms-4" style="position: absolute; top: 195.5%; width: auto; height: auto;">Feed:</label>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 200.5%; width: 90%; height: 7.5%;">
+                            <label>Block/Unblock:</label>
+                            <input class="block-subscriber-feed-address h-100 ms-3" type="text" placeholder="Feed Address" style="width: 35%;">
+                            <input class="block-subscriber-address h-100 ms-3" type="text" placeholder="Address" style="width: 35%;">
+                            <div class="form-check form-switch ms-2">
+                                <input class="form-check-input" type="checkbox" role="switch" id="block-address">
+                                <label class="form-check-label" for="block-address">Unblock</label>
+                            </div>
+                            <button class="save btn btn-secondary ms-2" type="button">Save</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 210.5%; width: 90%; height: 7.5%;">
+                            <label>Remove Subscriber:</label>
+                            <input class="remove-subscriber-feed-address h-100 ms-3" type="text" placeholder="Feed Address" style="width: 35%;">
+                            <input class="remove-subscriber-subscriber-address h-100 ms-3" type="text" placeholder="Subscriber Address" style="width: 35%;">
+                            <button class="remove-subscriber btn btn-secondary ms-3" type="button">Remove</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 220.5%; width: 60%; height: 7.5%;">
+                            <label>Set Time:</label>
+                            <input class="set-time-address h-100 ms-3" type="text" placeholder="Feed Address" style="width: 50%;">
+                            <input class="feed-time h-100 ms-3" type="number" placeholder="Time in Secs" style="width: 25%;">
+                            <button class="save btn btn-secondary ms-3" type="button">Save</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 230.5%; width: 80%; height: 7.5%;">
+                            <label>Set Extension Address:</label>
+                            <input class="set-extension-feed-address h-100 ms-3" type="text" placeholder="Feed Address" style="width: 35%;">
+                            <input class="set-extension-address h-100 ms-3" type="text" placeholder="Extension Address" style="width: 35%;">
+                            <button class="save btn btn-secondary ms-3" type="button">Save</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 240.5%; width: 60%; height: 7.5%;">
+                            <label>Set Price:</label>
+                            <input class="set-price-address h-100 ms-3" type="text" placeholder="Feed Address" style="width: 50%;">
+                            <input class="feed-price h-100 ms-3" type="number" placeholder="Price in ETH" style="width: 25%;">
+                            <button class="save btn btn-secondary ms-3" type="button">Save</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 250.5%; width: 60%; height: 7.5%;">
+                            <label>Renew Feed:</label>
+                            <input class="renew-feed-address h-100 ms-3" type="text" placeholder="Feed Address" style="width: 50%;">
+                            <button class="renew-feed btn btn-secondary ms-3" type="button">Renew</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 260.5%; width: 60%; height: 7.5%;">
+                            <label>Delete Feed:</label>
+                            <input class="delete-feed-address h-100 ms-3" type="text" placeholder="Feed Address" style="width: 50%;">
+                            <button class="delete-feed btn btn-secondary ms-3" type="button">Delete</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 270.5%; width: 80%; height: 7.5%;">
+                            <label class="withdraw-eth-feed-label">Withdraw ETH:</label>
+                            <input class="withdraw-eth-feed-address h-100 ms-3" type="text" placeholder="Feed Address" style="width: 40%;">
+                            <input class="withdraw-eth-feed-amount h-100 ms-3" type="number" placeholder="Amount" style="width: 20%;">
+                            <button class="withdraw-eth-feed btn btn-secondary ms-3" type="button">Withdraw</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 280.5%; width: 80%; height: 7.5%;">
+                            <label class="withdraw-token-feed-label">Withdraw Token:</label>
+                            <input class="withdraw-token-feed-address h-100 ms-3" type="text" placeholder="Feed Address" style="width: 40%;">
+                            <input class="withdraw-token-feed-amount h-100 ms-3" type="number" placeholder="Amount" style="width: 20%;">
+                            <button class="withdraw-token-feed btn btn-secondary ms-3" type="button">Withdraw</button>
+                        </div>
+                        <div style="position: absolute; top: 300.5%; width: 100%; height: 1px; background-color: grey;"></div>
+                        <label class="row fw-bold ms-4" style="position: absolute; top: 308.5%; width: auto; height: auto;">General:</label>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 313.5%; width: 90%; height: 7.5%;">
+                            <label>RPC Provider:</label>
+                            <input class="rpc-server h-100 ms-3" type="text" placeholder="RPC Provider Link" style="width: 55%;">
+                            <button class="save btn btn-secondary ms-2" type="button">Save</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 323.5%; width: 90%; height: 7.5%;">
+                            <label>Server:</label>
+                            <input class="ipfs-server h-100 ms-3" type="text" placeholder="Server Link" style="width: 55%;">
+                            <button class="save btn btn-secondary ms-2" type="button">Save</button>
+                        </div>
+                        <div class="col d-flex justify-content-start align-items-center ms-4 mt-4" style="position: absolute; top: 333.5%; width: 90%; height: 7.5%;">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="use-localhost">
+                                <label class="form-check-label" for="use-localhost">Use Localhost Settings</label>
+                            </div>
+                        </div>
+                        <button class="restore btn btn-secondary ms-3" type="button" style="position: absolute; top: 350.5%; width: auto; height: 7.5%;">Restore Default Settings</button>
+                        <div style="position: absolute; top: 355.5%; height: 7.5%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="g-0 p-0 custom-bottom-row d-flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center" style="position: absolute; left: 0; top: 0; width: 20%; height: 50%;">
+                <a class="fw-semibold" href="/help" style="text-decoration: none; color: black">Help</a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="position: absolute; left: 20%; top: 0; width: 20%; height: 50%;">
+                <a class="fw-semibold" href="/white-paper" style="text-decoration: none; color: black">White Paper</a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="position: absolute; left: 40%; top: 0; width: 20%; height: 50%;">
+                <a class="fw-semibold" href="/terms" style="text-decoration: none; color: black">Terms of Services</a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="position: absolute; left: 60%; top: 0; width: 20%; height: 50%;">
+                <a class="fw-semibold" href="/privacy" style="text-decoration: none; color: black">Privacy Policy</a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="position: absolute; left: 80%; top: 0; width: 20%; height: 50%;">
+                <a class="fw-semibold" href="/faq" style="text-decoration: none; color: black">FAQ</a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="position: absolute; left: 30%; top: 50%; width: 40%; height: 50%; font-size: smaller;">
+                © HashBox 2023 Released under the MIT license
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-spinner-back" id="spinner-back">
+    <div class="d-flex justify-content-center show" id="spinner-front">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="custom-spinner custom-spinner-size spinner-border d-none d-md-block" role="status"></div>
+                <div class="custom-spinner custom-spinner-size-mob spinner-border d-md-none" role="status"></div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center">
+                <p></p>
+                Loading...
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dialog-background invisible"></div>
+<div class="warning-background invisible"></div>
+<div class="custom-dialog-warning-large rounded-3 invisible">
+    <div class="row custom-dialog-header-warning rounded-3 g-0">
+        <div class="custom-dialog-header-title d-flex rounded-3 justify-content-start align-items-center g-0 w-100">
+            <label class="custom-title-warning form-check-label custom-font-size-warning d-inline-block text-truncate text-center w-100 fw-bold">No Mobile Version</label>
+        </div>
+    </div>
+    <div class="row custom-dialog-body-warning rounded-3 g-0">
+        <div class="row custom-dialog-row-top-warning g-0 d-flex justify-content-center align-items-center">
+            <label class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0">Unfortunately we don't have a mobile version yet.<br>Access the website from a notebook or a desktop computer.</label>
+        </div>
+        <div class="row custom-dialog-row-bottom-warning g-0 d-flex justify-content-center align-items-center">
+            <div class="custom-div-separator-warning"></div>
+            <a class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0">Thank you for understanding.</a>
+            <button class="invisible custom-btn-warning btn btn-dark custom-dialog-col custom-font-size-warning text-center w-75 m-0 p-0 mb-4"></button>
+            <div class="custom-div-separator-warning"></div>
+        </div>
+    </div>
+</div>
+<div class="custom-dialog-warning-medium rounded-3 invisible">
+    <div class="row custom-dialog-header-warning rounded-3 g-0">
+        <div class="custom-dialog-header-title d-flex rounded-3 justify-content-start align-items-center g-0 w-100">
+            <label class="custom-title-warning form-check-label custom-font-size-warning d-inline-block text-truncate text-center w-100 fw-bold"></label>
+        </div>
+    </div>
+    <div class="row custom-dialog-body-warning rounded-3 g-0">
+        <div class="row g-0 d-flex justify-content-center align-items-center" style="height: 65%;">
+            <label class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0"></label>
+        </div>
+        <div class="row custom-dialog-row-bottom-warning g-0 d-flex justify-content-center align-items-center">
+            <div class="custom-div-separator-warning m-0 p-0 g-0"></div>
+            <a class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0"></a>
+            <button class="invisible custom-btn-warning btn btn-success custom-dialog-col custom-font-size-warning text-center w-50 m-0 p-0"></button>
+            <button class="invisible custom-btn-warning btn btn-warning custom-dialog-col custom-font-size-warning text-center w-50 m-0 p-0"></button>
+            <div class="custom-div-separator-warning m-0 p-0 g-0"></div>
+        </div>
+    </div>
+</div>
+<div class="custom-dialog-warning-small rounded-3 invisible">
+    <div class="row custom-dialog-header-warning rounded-3 g-0">
+        <div class="custom-dialog-header-title d-flex rounded-3 justify-content-start align-items-center g-0 w-100">
+            <label class="custom-title-warning form-check-label custom-font-size-warning d-inline-block text-truncate text-center w-100 fw-bold"></label>
+        </div>
+    </div>
+    <div class="row custom-dialog-body-warning rounded-3 g-0">
+        <div class="row g-0 d-flex justify-content-center align-items-center" style="height: 50%">
+            <label class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0"></label>
+        </div>
+        <div class="row custom-dialog-row-bottom-warning g-0 d-flex justify-content-center align-items-center">
+            <div class="custom-div-separator-warning m-0 p-0 g-0"></div>
+            <a class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0"></a>
+            <button class="invisible custom-btn-warning btn btn-success custom-dialog-col custom-font-size-warning text-center w-50 m-0 p-0"></button>
+            <button class="invisible custom-btn-warning btn btn-warning custom-dialog-col custom-font-size-warning text-center w-50 m-0 p-0"></button>
+            <div class="custom-div-separator-warning m-0 p-0 g-0"></div>
+        </div>
+    </div>
+</div>
+<div class="custom-dialog-credits rounded-3 invisible">
+    <div class="row custom-dialog-header-warning rounded-3 g-0">
+        <div class="custom-dialog-header-title d-flex rounded-3 justify-content-start align-items-center g-0 w-100">
+            <label class="custom-title-warning form-check-label custom-font-size-warning d-inline-block text-truncate text-center w-100 fw-bold"></label>
+        </div>
+    </div>
+    <div class="row custom-dialog-body-warning rounded-3 g-0">
+        <div class="row custom-dialog-row-top-warning g-0 d-flex justify-content-center align-items-top" style="height: 45%">
+            <label class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0"></label>
+        </div>
+        <div class="row custom-dialog-row-bottom-warning g-0 d-flex justify-content-center align-items-center" style="height: 55%;">
+            <div class="row d-flex justify-content-center align-items-center" style="height: 30%;">
+                <input class="credits-amount" type="number" placeholder="Amount" style="width: 50%; height: 100%;">
+            </div>
+            <div class="row d-flex justify-content-center align-items-center g-0" style="width: 60%; height: 30%;">
+                <div class="total-label d-flex justify-content-start align-items-center fw-bold" style="width: auto; height: 100%;">Total:&nbsp;</div>
+                <div class="total d-flex justify-content-start align-items-center" style="width: auto; height: 100%;"></div>
+            </div>
+            <div class="row w-100" style="height: 33%">
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="close custom-btn-warning btn btn-secondary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="ok-credits custom-btn-warning btn btn-primary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-dialog-feed rounded-3 invisible">
+    <div class="row custom-dialog-header-warning rounded-3 g-0" style="height: 15%">
+        <div class="custom-dialog-header-title d-flex rounded-3 justify-content-start align-items-center g-0 w-100">
+            <label class="custom-title-warning form-check-label custom-font-size-warning d-inline-block text-truncate text-center w-100 fw-bold"></label>
+        </div>
+    </div>
+    <div class="row custom-dialog-body-warning rounded-3 g-0">
+        <div class="row custom-dialog-row-top-warning g-0 d-flex justify-content-center align-items-top" style="height: 30%;">
+            <label class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0"></label>
+        </div>
+        <div class="row custom-dialog-row-bottom-warning g-0 d-flex justify-content-center align-items-center" style="height: 80%;">
+            <div class="row d-flex justify-content-start align-items-center m-0 p-0 g-0" style="width: 87.5%; height: 15%;">
+                <input class="feed-name ps-2" type="text" placeholder="Name" style="width: 100%; height: 100%;">
+            </div>
+            <div class="row d-flex justify-content-start align-items-center m-0 p-0 g-0" style="width: 87.5%; height: 15%;">
+                <div class="col ms-3">
+                    <input type="checkbox" id="payment-with-token">
+                    <label class="ms-2" for="payment-with-token">Payment with Token</label>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-start align-items-center m-0 p-0 g-0" style="width: 87.5%; height: 15%;">
+                <input class="feed-extension-address ps-2" type="text" placeholder="Extension Address" style="width: 100%; height: 100%;">
+            </div>
+            <div class="row d-flex justify-content-start align-items-center m-0 p-0 g-0" style="width: 87.5%; height: 15%;">
+                <select class="select-align-center" id="feed-time" autocomplete="off" style="width: 49.5%; height: 100%;">
+                    <option value="2592000" selected>Subs. Period 30 Days</option>
+                    <option value="5184000">Subs. Period 60 Days</option>
+                    <option value="7776000">Subs. Period 90 Days</option>
+                    <option value="15552000">Subs. Period 180 Days</option>
+                    <option value="31536000">Subs. Period 365 Days</option>
+                </select>
+                <div class="m-0 p-0 g-0" style="width: 1%"></div>
+                <select class="select-align-center" id="feed-max" autocomplete="off" style="width: 49.5%; height: 100%;">
+                    <option value="0" selected>Unlimited Users</option>
+                    <option value="3">3 Users</option>
+                    <option value="6">6 Users</option>
+                    <option value="12">12 Users</option>
+                    <option value="24">24 Users</option>
+                </select>
+            </div>
+            <div class="row d-flex justify-content-start align-items-center m-0 p-0 g-0" style="width: 87.5%; height: 15%;">
+                <input class="feed-price ps-2" type="number" placeholder="Price" style="width: 100%; height: 100%;">
+            </div>
+            <div class="row w-100" style="height: 20%;">
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="close custom-btn-warning btn btn-secondary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="ok-feed custom-btn-warning btn btn-primary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-dialog-rating rounded-3 invisible">
+    <div class="row custom-dialog-header-warning rounded-3 g-0">
+        <div class="custom-dialog-header-title d-flex rounded-3 justify-content-start align-items-center g-0 w-100">
+            <label class="custom-title-warning form-check-label custom-font-size-warning d-inline-block text-truncate text-center w-100 fw-bold"></label>
+        </div>
+    </div>
+    <div class="row custom-dialog-body-warning rounded-3 g-0">
+        <div class="row custom-dialog-row-top-warning g-0 d-flex justify-content-center align-items-top" style="height: 45%">
+            <label class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0"></label>
+        </div>
+        <div class="row custom-dialog-row-bottom-warning g-0 d-flex justify-content-center align-items-center" style="height: 55%;">
+            <div class="row d-flex justify-content-center align-items-center" style="width: 50%; height: 30%;">
+                    <select id="rating" autocomplete="off">
+                        <option value="1">Rating 1</option>
+                        <option value="2">Rating 2</option>
+                        <option value="3">Rating 3</option>
+                        <option value="4">Rating 4</option>
+                        <option value="5">Rating 5</option>
+                        <option value="6">Rating 6</option>
+                        <option value="7">Rating 7</option>
+                        <option value="8">Rating 8</option>
+                        <option value="9">Rating 9</option>
+                        <option value="10" selected>Rating 10</option>
+                    </select>
+            </div>
+            <div class="row w-100" style="height: 33%">
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="close custom-btn-warning btn btn-secondary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="ok-rating custom-btn-warning btn btn-primary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-dialog-contacts rounded-3 invisible">
+    <div class="row custom-dialog-header-warning rounded-3 g-0">
+        <div class="custom-dialog-header-title d-flex rounded-3 justify-content-start align-items-center g-0 w-100">
+            <label class="custom-title-warning form-check-label custom-font-size-warning d-inline-block text-truncate text-center w-100 fw-bold"></label>
+        </div>
+    </div>
+    <div class="row custom-dialog-body-warning rounded-3 g-0">
+        <div class="row custom-dialog-row-top-warning g-0 d-flex justify-content-center align-items-top" style="height: 30%;">
+            <label class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0"></label>
+        </div>
+        <div class="row custom-dialog-row-bottom-warning g-0 d-flex justify-content-center align-items-center" style="height: 70%;">
+            <div class="row d-flex justify-content-center align-items-center" style="height: 20%;">
+                <select class="select-align-center" id="contacts-symbol" autocomplete="off" style="width: 95%; height: 100%;">
+                    <option value="BTC" selected>Bitcoin (BTC)</option>
+                    <option value="ETH">Ethereum (ETH)</option>
+                    <option value="BSC">Binance Smart Chain (BSC)</option>
+                    <option value="DOGE">Dogecoin (DOGE)</option>
+                    <option value="ADA">Cardano (ADA)</option>
+                    <option value="MATIC">Polygon (MATIC)</option>
+                    <option value="LTC">Litecoin (LTC)</option>
+                    <option value="TRX">Tron (TRX)</option>
+                    <option value="SOL">Solana (SOL)</option>
+                    <option value="AVAX">Avalanche (AVAX)</option>
+                </select>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="height: 20%;">
+                <input class="contacts-address" type="text" placeholder="Address" style="width: 95%; height: 100%;">
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="height: 20%;">
+                <input class="contacts-nickname" type="text" placeholder="Nickname" maxlength="40" style="width: 95%; height: 100%;">
+            </div>
+            <div class="row w-100" style="height: 33%;">
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="close custom-btn-warning btn btn-secondary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="ok-contacts custom-btn-warning btn btn-primary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-dialog-send-money rounded-3 invisible">
+    <div class="row custom-dialog-header-warning rounded-3 g-0" style="height: 15%">
+        <div class="custom-dialog-header-title d-flex rounded-3 justify-content-start align-items-center g-0 w-100">
+            <label class="custom-title-warning form-check-label custom-font-size-warning d-inline-block text-truncate text-center w-100 fw-bold"></label>
+        </div>
+    </div>
+    <div class="row custom-dialog-body-warning rounded-3 g-0">
+        <div class="row custom-dialog-row-top-warning g-0 d-flex justify-content-center align-items-center" style="height: 40%;">
+            <label class="custom-text-warning form-check-label custom-dialog-col custom-font-size-warning text-center m-0"></label>
+        </div>
+        <div class="row custom-dialog-row-bottom-warning g-0 d-flex justify-content-center align-items-center" style="height: 70%;">
+            <div class="row d-flex justify-content-center align-items-center" style="height: 20%;">
+                <input class="send-money-address" type="text" placeholder="Address/Nickname" style="width: 95%; height: 100%;">
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="height: 20%;">
+                <select class="select-align-center" id="send-money-type" autocomplete="off" style="width: 95%; height: 100%;">
+                    <option value="0" selected>Ethereum (ETH)</option>
+                    <option value="1">HashBox Mail Credits (HBM)</option>
+                    <option value="2">Tether (USDT)</option>
+                    <option value="3">USD Coin (USDC)</option>
+                    <option value="4">Wrapped Bitcoin (WBTC)</option>
+                </select>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="height: 20%;">
+                <input class="send-money-amount" type="number" placeholder="Amount" style="width: 95%; height: 100%;">
+            </div>
+            <div class="row w-100" style="height: 33%;">
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="close custom-btn-warning btn btn-secondary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center h-100" style="width: 45%;">
+                    <button class="ok-send-money custom-btn-warning btn btn-primary custom-dialog-col custom-font-size-warning text-center w-100 m-0 p-0"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="position-fixed custom-toast-background bottom-0 end-0 p-3 d-flex justify-content-center align-items-center">
+    <div class="toast custom-toast d-none d-flex justify-content-center align-items-center" role="alert" data-bs-delay="2500" aria-live="assertive" aria-atomic="true" id="toast">
+        <div class="toast-body custom-toast-body" id="toast-message"></div>
+    </div>
+</div>
+</body>
+</html> 

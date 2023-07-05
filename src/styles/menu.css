@@ -1,0 +1,72 @@
+.menu-nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 8;
+    pointer-events: none;
+}
+.menu-nav-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 8;
+    background-color: rgba(00,00,00,0.7);
+    pointer-events: all;
+}
+.menu-nav ul {
+    list-style: none;
+    pointer-events: all;
+}
+.menu-nav a {
+    padding: 1rem;
+    display: block;
+    text-decoration: none;
+    text-align: start;
+    background-color: #202020;
+    color: #fff;
+}
+.menu-nav ul ul {
+    visibility: hidden;
+}
+.menu-nav ul li:hover ul {
+    visibility: visible;
+}
+.menu-nav a:hover {
+    background-color: #f4f4f4;
+    color: #555;
+}
+.menu-nav ul ul li {
+    float: none;
+    border-bottom: solid 1px #ccc;
+}
+.menu-nav ul ul li a {
+    background-color: #069;
+}
+.custom-menu-nav-primary-div {
+    height: 114px;
+    background-color: transparent;
+}
+@media (min-width: 0px) and (max-width: 359.98px) {
+    .header-menu{
+        display: none;
+    }
+}
+@media (min-width: 0px) and (max-width: 479.98px) {
+    .menu-nav ul li {
+        width: 50%;
+    }
+}
+@media (min-width: 480px) and (max-width: 767.98px) {
+    .menu-nav ul li {
+        width: 33%;
+    }
+}
+@media (min-width: 768px) and (max-width: 1399.98px) {
+    .menu-nav ul li {
+        width: 25%;
+    }
+}

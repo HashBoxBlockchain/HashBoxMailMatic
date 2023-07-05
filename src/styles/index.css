@@ -1,0 +1,239 @@
+.nav{
+    position: absolute;
+    width: auto;
+    top: 0;
+    height: 10%;
+}
+.list-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.read-msg-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.write-msg-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.settings-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.inbox-list-container{
+    position: relative;
+    left: 22.5%;
+    width: 76%;
+    height: 77.5%;
+}
+.sent-list-container{
+    position: relative;
+    left: 22.5%;
+    width: 76%;
+    height: 77.5%;
+}
+.all-mail-list-container{
+    position: relative;
+    left: 22.5%;
+    width: 76%;
+    height: 77.5%;
+}
+.burned-list-container{
+    position: relative;
+    left: 22.5%;
+    width: 76%;
+    height: 77.5%;
+}
+.blocked-users-list-container{
+    position: relative;
+    left: 22.5%;
+    width: 76%;
+    height: 77.5%;
+}
+.feeds-list-container{
+    position: relative;
+    left: 22.5%;
+    width: 76%;
+    height: 77.5%;
+}
+.subscriptions-list-container{
+    position: relative;
+    left: 22.5%;
+    width: 76%;
+    height: 77.5%;
+}
+.contacts-list-container{
+    position: relative;
+    left: 22.5%;
+    width: 76%;
+    height: 77.5%;
+}
+.search-mail-list-container{
+    position: relative;
+    left: 22.5%;
+    width: 76%;
+    height: 77.5%;
+}
+.inbox-list{
+    height: 100%;
+    border-radius: 1%;
+    background-color: #e7e7ff;
+}
+.sent-list{
+    height: 100%;
+    border-radius: 1%;
+    background-color: #e7e7ff;
+}
+.all-mail-list{
+    height: 100%;
+    border-radius: 1%;
+    background-color: #e7e7ff;
+}
+.burned-list{
+    height: 100%;
+    border-radius: 1%;
+    background-color: #e7e7ff;
+}
+.blocked-users-list{
+    height: 100%;
+    border-radius: 1%;
+    background-color: #e7e7ff;
+}
+.feeds-list{
+    height: 100%;
+    border-radius: 1%;
+    background-color: #e7e7ff;
+}
+.subscriptions-list{
+    height: 100%;
+    border-radius: 1%;
+    background-color: #e7e7ff;
+}
+.contacts-list{
+    height: 100%;
+    border-radius: 1%;
+    background-color: #e7e7ff;
+}
+.search-mail-list{
+    height: 100%;
+    border-radius: 1%;
+    background-color: #e7e7ff;
+}
+.list-group-item {
+    position: relative;
+    height: 3rem;
+    margin: 0 0 0 0;
+}
+.list-item{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    color: black;
+    border-bottom: 1px solid grey;
+    background-color: #e7e7ff;
+}
+.options-div{
+
+}
+/*.options-list{
+    border-radius: 1%;
+}*/
+.options-item{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    color: black;
+    border-bottom: 1px solid grey;
+    border-radius: 0;
+    background-color: #e7e7ff;
+}
+.list-img-style{
+    position: relative;
+    width: auto;
+    height: 18rem;
+    object-fit: contain;
+}
+.info-div{
+    height: 5rem;
+}
+.part-info-div{
+    height: 2.5rem;
+}
+.btn-info-style{
+    width: 40%;
+    height: 90%;
+}
+.space-btn{
+    width: 10%;
+}
+.price{
+    color: white;
+}
+.space-price{
+    width: 5%;
+}
+.title{
+    color: white;
+    width: 90%;
+}
+.description{
+    color: white;
+    width: 90%;
+}
+
+.nav-item a.active {
+    background-color: orange !important;
+    color: black !important;
+}
+
+.nav-item a {
+    color: orange !important;
+}
+
+.select-align-center{
+    text-align: center;
+    text-align-last: center;
+    -moz-text-align-last: center;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+}
+
+@media (min-width: 0px) and (max-width: 479.98px) {
+    .list-group-item {
+        width: 100%;
+    }
+}
+@media (min-width: 480px) and (max-width: 767.98px) {
+    .list-group-item {
+        width: 100%;
+    }
+}
+@media (min-width: 768px) and (max-width: 1399.98px) {
+    .list-group-item {
+        width: 100%;
+    }
+}
