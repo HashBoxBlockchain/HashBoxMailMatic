@@ -4,7 +4,7 @@ pragma solidity ^0.8.17;
 
 import "../common/ReentrancyGuard.sol";
 import "../common/Ownable.sol";
-import "../extensions/FeedExtension.sol";
+import "../interfaces/IFeedExtension.sol";
 import "../custom/MailERC721.sol";
 import "../libraries/CheckFeedExtension.sol";
 
@@ -22,7 +22,7 @@ contract Feed is ReentrancyGuard, Ownable {
 	address private extensionAddress;
 	mapping(address => uint256) private addressToSubscriberId;
 	mapping(address => uint8) private ratings;
-	FeedExtension private extension;
+	IFeedExtension private extension;
 	MailERC721 private mailERC721;
 
 	struct Subscriber{
@@ -42,7 +42,7 @@ contract Feed is ReentrancyGuard, Ownable {
 
 		if(extensionAddress_ != address(0)){
 			CheckFeedExtension.check(extensionAddress_);
-			extension = FeedExtension(extensionAddress_);
+			extension = IFeedExtension(extensionAddress_);
 			extension.setInfo(address(this), price_);
 		}
 
@@ -82,7 +82,7 @@ contract Feed is ReentrancyGuard, Ownable {
 
 		if(extensionAddress_ != address(0)){
 			CheckFeedExtension.check(extensionAddress_);
-			extension = FeedExtension(extensionAddress_);
+			extension = IFeedExtension(extensionAddress_);
 			extension.setInfo(address(this), price_);
 		}
 

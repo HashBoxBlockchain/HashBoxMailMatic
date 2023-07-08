@@ -6,7 +6,7 @@ import "../common/ERC721.sol";
 import "../common/ReentrancyGuard.sol";
 import "../common/ERC20.sol";
 import "./Feed.sol";
-import "../extensions/MailExtension.sol";
+import "../interfaces/IMailExtension.sol";
 import "./MailFeeds.sol";
 import "./Contacts.sol";
 import "../libraries/CheckMailExtension.sol";
@@ -180,7 +180,7 @@ contract MailERC721 is ERC721, ReentrancyGuard {
 
 			if(mailboxTo.extensionAddress != address(0)){
 				require(customFee >= fee,"Fee below");
-				MailExtension extension = MailExtension(extensionAddress);
+				IMailExtension extension = IMailExtension(extensionAddress);
 				extension.antiSPAM{value: msg.value}(msg.sender, to, customFee);
 			}
 			else{
