@@ -25,7 +25,7 @@ class Constants{
     static TOKEN_CONTRACT_2_ADDRESS = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
     static TOKEN_CONTRACT_3_ADDRESS = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
     static TOKEN_CONTRACT_4_ADDRESS = "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6";
-    static DEFAULT_RPC_PROVIDER = "https://polygon-mumbai.g.alchemy.com/v2/BRYeNJh27a_ysayZoBhhpKjoiiqE-Umf";
+    static DEFAULT_RPC_PROVIDER = "https://polygon.llamarpc.com";
     static RPC_PROVIDER = Constants.DEFAULT_RPC_PROVIDER;
     static ALG_KEY = "RSA-OAEP-256";
     static ALG_MSG = "AES-GCM-256";
