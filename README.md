@@ -8,7 +8,9 @@ It's a mail built on the blockchain using smart contracts to send and receive me
 
 - Install Node.js: https://nodejs.org/en/download/;
 - Clone the repository;
-- Install all the dependencies (IPFS, Truffle, Express and etc.).
+- Install all the dependencies (IPFS, Truffle, Express and etc.);
+- Install MySQL Database and enable MySQL service: https://dev.mysql.com/downloads/installer/;
+- Create the database "Mails" and the tables "Messages", "Users", "Terms" and "Fees".
 
 To start the application using your PC, type in the command prompt:
 
